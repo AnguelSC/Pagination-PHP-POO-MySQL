@@ -12,7 +12,7 @@ Basic Pagination PHP POO and MySQL
 <code>$pagination->setWhere(array('Title','Title demo'));</code>
 <p>Show list of pages and current page:</p>
 <pre>
-	for ($i=1; $i <= $pagination->getPages(); $i++) { 
+	for ($i=1; $i &lt;= $pagination->getPages(); $i++) { 
 	  $active = ($pagination->getCurrentPage()==$i) ? ' class="active"':'';
 	  echo '&lt;li'.$active.'>&lt;a href="#" >'.$i.'&lt;/a>&lt;/li>';
 	}
