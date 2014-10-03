@@ -3,9 +3,9 @@ class Pagination{
 	private $table;
 	private $RecordPages;
 	private $Pages = 1;
-	private $orderby = null;
 	private $CurrentPage = 1;
-	private $where;
+	private $orderby = null;
+	private $where = null;
 	private $total;
 
 	function __construct($table,$count){
@@ -48,7 +48,7 @@ class Pagination{
 				$sql = $sql." WHERE ".$this->where[0]."=".$this->where[1];
 			}
 			if($this->orderby != null){
-				$sql = $sql." ORDER BY ".$this->orderby." DESC";
+				$sql = $sql." ORDER BY ".$this->orderby[0]." ".$this->orderby[1];
 			}
 			$sql = $sql." LIMIT ".$records.",".$this->RecordPages." ";
 			$query = mysql_query($sql);
