@@ -14,6 +14,6 @@ Basic Pagination PHP POO and MySQL
 <pre>
 	for ($i=1; $i <= $pagination->getPages(); $i++) { 
 	  $active = ($pagination->getCurrentPage()==$i) ? ' class="active"':'';
-	  echo '<li'.$active.'><a href="#" >'.$i.'</a></li>';
+	  echo '&lt;li'.$active.'>&lt;a href="#" >'.$i.'&lt;/a>&lt;/li>';
 	}
 </pre>
