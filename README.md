@@ -5,11 +5,11 @@ Basic Pagination PHP POO and MySQL
 
 <h2>Use</h2>
 <p>Instance:</p>
-<code>new Pagination(table,countRecoding);</code>
+<code>new Pagination(table,countRecord);</code>
 <p>Example:</p>
 <code>$pagination = new Pagination('Book', 5);</code>
 <p>And add order by in sentence:</p>
-<code>$pagination->setOrderBy(array(attribute,asc o desc));</code>
+<code>$pagination->setOrderBy(array(attribute,asc or desc));</code>
 <p>Example:</p>
 <code>$pagination->setOrderBy(array('Pages','DESC'));</code>
 <p>And add Where in sentence:</p>
