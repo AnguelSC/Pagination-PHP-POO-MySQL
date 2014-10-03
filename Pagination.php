@@ -20,10 +20,7 @@ class Pagination{
 
 		if($this->total>$this->RecordPages){
 			$t =$this->total/$this->RecordPages;
-			if($t/$t == 1)
-				$pages = intval(round($t,PHP_ROUND_HALF_DOWN));
-			else
-				$pages = $t;
+			$pages = intval(round($t,PHP_ROUND_HALF_EVEN));
 			$final = $pages*$this->RecordPages;
 			if($final < $this->total)
 				$this->Pages = $pages+1;
