@@ -45,7 +45,7 @@ class Pagination{
 			$records = ($page-1) * $this->RecordPages;
 			$sql ="SELECT * FROM ".$this->table;
 			if($this->where != null){
-				$sql = $sql." WHERE ".$this->where[0]."=".$this->where[1];
+				$sql = $sql." WHERE ".$this->where[0].$this->where[1].$this->where[2];
 			}
 			if($this->orderby != null){
 				$sql = $sql." ORDER BY ".$this->orderby[0]." ".$this->orderby[1];

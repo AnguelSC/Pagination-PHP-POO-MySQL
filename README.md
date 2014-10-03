@@ -13,9 +13,9 @@ Basic Pagination PHP POO and MySQL
 <p>Example:</p>
 <code>$pagination->setOrderBy(array('Pages','DESC'));</code>
 <p>And add Where in sentence:</p>
-<code>$pagination->setWhere(array(attribute,value));</code>
+<code>$pagination->setWhere(array(attribute,condition,value));</code>
 <p>Example:</p>
-<code>$pagination->setWhere(array('Title','Title demo'));</code>
+<code>$pagination->setWhere(array('Title','LIKE','Title demo'));</code>
 <p>Show list of pages and current page:</p>
 <pre>
 	for ($i=1; $i &lt;= $pagination->getPages(); $i++) { 
