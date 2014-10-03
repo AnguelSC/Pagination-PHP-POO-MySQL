@@ -10,3 +10,10 @@ Basic Pagination PHP POO and MySQL
 <code>$pagination->setOrderBy(array('Pages','DESC'));</code>
 <p>And add Where in sentence:</p>
 <code>$pagination->setWhere(array('Title','Title demo'));</code>
+<p>Show list of pages and current page:</p>
+<pre>
+	for ($i=1; $i <= $pagination->getPages(); $i++) { 
+	  $active = ($pagination->getCurrentPage()==$i) ? ' class="active"':'';
+	  echo '<li'.$active.'><a href="#" >'.$i.'</a></li>';
+	}
+</pre>
