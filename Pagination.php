@@ -11,13 +11,12 @@ class Pagination{
 	function __construct($table,$count){
 		$this->table = $table;
 		$this->RecordPages = $count;
-		$this->reloadPages();
+		
 	}
 	
 	private function reloadPages(){
-		$query = mysql_query("SELECT * FROM ".$this->table." ");
+		$query = mysql_query($this->setQuery());
 		$this->total = mysql_num_rows($query);
-
 		if($this->total>$this->RecordPages){
 			$t =$this->total/$this->RecordPages;
 			$pages = intval(round($t,PHP_ROUND_HALF_EVEN));
@@ -35,18 +34,26 @@ class Pagination{
 	public function getTotal(){return $this->total;}
 	public function setOrderBy($orderby){$this->orderby = $orderby;}
 	public function setWhere($where){$this->where = $where;}
-
-	public function mostrar($page){
+	public function setQuery(){
+		$sql ="SELECT * FROM ".$this->table;
+		if($this->where != null){
+			$sql = $sql.' WHERE ';
+			for ($i=0; $i < count($this->where); $i++) { 
+				$and = ($i>0) ? ' AND ' : '' ;
+				$sql = $sql.$and.$this->where[$i][0].$this->where[$i][1].$this->where[$i][2];
+			}
+		}
+		if($this->orderby != null){
+			$sql = $sql." ORDER BY ".$this->orderby[0]." ".$this->orderby[1];
+		}
+		return $sql;
+	}
+	public function getRecords($page){
+		$this->reloadPages();
 		if($page<=$this->Pages){
 			$this->CurrentPage = $page;
 			$records = ($page-1) * $this->RecordPages;
-			$sql ="SELECT * FROM ".$this->table;
-			if($this->where != null){
-				$sql = $sql." WHERE ".$this->where[0].$this->where[1].$this->where[2];
-			}
-			if($this->orderby != null){
-				$sql = $sql." ORDER BY ".$this->orderby[0]." ".$this->orderby[1];
-			}
+			$sql = $this->setQuery();
 			$sql = $sql." LIMIT ".$records.",".$this->RecordPages." ";
 			$query = mysql_query($sql);
 			return $query;
