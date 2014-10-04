@@ -20,7 +20,16 @@ Basic Pagination PHP POO and MySQL
 <code>$pagination->setOrderBy(array('Pages','DESC'));</code>
 <p>Query result:</p>
 <code>SELECT * FROM Book ORDER BY Pages DESC</code>
-
+<h3>Get Records:</h3>
+<pre>
+	if (isset($_GET['page']))
+	    $query = $pagination->getRecords($_GET['page']);
+	else
+	    $query = $paginacion->getRecords(1);
+	while ($fila = mysql_fetch_array($query)) {
+	    //show your attribute
+	}
+</pre>
 <p>Show list of pages and current page:</p>
 <pre>
 	for ($i=1; $i &lt;= $pagination->getPages(); $i++) { 
