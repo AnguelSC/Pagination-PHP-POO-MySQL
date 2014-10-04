@@ -8,13 +8,13 @@ Basic Pagination PHP POO and MySQL
 <code>new Pagination(table,countRecord);</code>
 <p>Example:</p>
 <code>$pagination = new Pagination('Book', 5);</code>
-<p>And add Multiple Where in sentence:</p>
+<h3>And add Multiple Where in sentence:</h3>
 <code>$pagination->setWhere(array(array(attribute,condition,value),array(attribute,condition,value),etc));</code>
 <p>Example:</p>
 <code>$pagination->setWhere(array(array('Status','=',1),array('ID','>',3)));</code>
 <p>Query result:</p>
 <code>SELECT * FROM Book WHERE Status=1 AND ID>3</code>
-<p>And add order by in sentence:</p>
+<h3>And add order by in sentence:</h3>
 <code>$pagination->setOrderBy(array(attribute,asc or desc));</code>
 <p>Example:</p>
 <code>$pagination->setOrderBy(array('Pages','DESC'));</code>
