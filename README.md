@@ -26,7 +26,7 @@ Basic Pagination PHP POO and MySQL
 	    $query = $pagination->getRecords($_GET['page']);
 	else
 	    $query = $paginacion->getRecords(1);
-	while ($fila = mysql_fetch_array($query)) {
+	while ($row = mysql_fetch_array($query)) {
 	    //show your attribute
 	}
 </pre>
