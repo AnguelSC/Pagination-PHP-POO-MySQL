@@ -15,7 +15,7 @@ class Pagination{
 	}
 	
 	private function reloadPages(){
-		$query = mysql_query($this->setQuery());
+		$query = mysql_query($this->setQuery(null));
 		$this->total = mysql_num_rows($query);
 		if($this->total>$this->RecordPages){
 			$t =$this->total/$this->RecordPages;
@@ -34,26 +34,30 @@ class Pagination{
 	public function getTotal(){return $this->total;}
 	public function setOrderBy($orderby){$this->orderby = $orderby;}
 	public function setWhere($where){$this->where = $where;}
-	public function setQuery(){
-		$sql ="SELECT * FROM ".$this->table;
-		if($this->where != null){
-			$sql = $sql.' WHERE ';
-			for ($i=0; $i < count($this->where); $i++) { 
-				$and = ($i>0) ? ' AND ' : '' ;
-				$sql = $sql.$and.$this->where[$i][0].$this->where[$i][1].$this->where[$i][2];
+	public function setQuery($query){
+		if ($query == null) {
+			$sql ="SELECT * FROM ".$this->table;
+			if($this->where != null){
+				$sql = $sql.' WHERE ';
+				for ($i=0; $i < count($this->where); $i++) { 
+					$and = ($i>0) ? ' AND ' : '' ;
+					$sql = $sql.$and.$this->where[$i][0].$this->where[$i][1].$this->where[$i][2];
+				}
 			}
+			if($this->orderby != null){
+				$sql = $sql." ORDER BY ".$this->orderby[0]." ".$this->orderby[1];
+			}
+			return $sql;
 		}
-		if($this->orderby != null){
-			$sql = $sql." ORDER BY ".$this->orderby[0]." ".$this->orderby[1];
-		}
-		return $sql;
+		return $query;
+		
 	}
 	public function getRecords($page){
 		$this->reloadPages();
 		if($page<=$this->Pages){
 			$this->CurrentPage = $page;
 			$records = ($page-1) * $this->RecordPages;
-			$sql = $this->setQuery();
+			$sql = $this->setQuery(null);
 			$sql = $sql." LIMIT ".$records.",".$this->RecordPages." ";
 			$query = mysql_query($sql);
 			return $query;
